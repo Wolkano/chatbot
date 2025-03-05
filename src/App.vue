@@ -1,5 +1,7 @@
 <template>
-  <div class="ChatContainer">
+  <button @click="showMenu" v-if="!isMenuOpen">^</button>
+  <button @click="showMenu" v-if="isMenuOpen">(Pil som pekar ner)</button>
+  <div class="ChatContainer" v-if="isMenuOpen">
     <div class="firstq">
       <h1>Hej Bygg-Bengt här!</h1>
       <p>Vill du få en offert inom 5 minuter?</p>
@@ -18,8 +20,13 @@
 
 <script setup>
 import Cookies from "js-cookie";
-
+import { ref } from "vue";
 let currentQ = 0;
+
+const isMenuOpen = ref(false);
+const showMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
 
 const startForm = () => {
   document.querySelector(".firstq").style = "display: none";
@@ -235,6 +242,9 @@ const handleResponse = (op) => {
   color: #e5e7eb;
   padding: 20px 50px;
   box-shadow: 0px 1px 10px rgba($color: #000000, $alpha: 0.2);
+  transform: scaleX(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
 
   .firstq {
     display: flex;
