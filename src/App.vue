@@ -1,7 +1,9 @@
 <template>
-  <button @click="showMenu" v-if="!isMenuOpen">^</button>
-  <button @click="showMenu" v-if="isMenuOpen">(Pil som pekar ner)</button>
-  <div class="ChatContainer" v-if="isMenuOpen">
+  <button @click="showMenu" v-if="!isMenuOpen">
+    {{ isMenuOpen ? "⬇️" : "⬆️" }}
+  </button>
+
+  <div class="ChatContainer" :class="{ open: isMenuOpen }">
     <div class="firstq">
       <h1>Hej Bygg-Bengt här!</h1>
       <p>Vill du få en offert inom 5 minuter?</p>
@@ -232,9 +234,11 @@ const handleResponse = (op) => {
 
 <style lang="scss">
 .ChatContainer {
+  position: fixed;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5px;
   width: 600px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,10 +246,12 @@ const handleResponse = (op) => {
   color: #e5e7eb;
   padding: 20px 50px;
   box-shadow: 0px 1px 10px rgba($color: #000000, $alpha: 0.2);
-  transform: scaleX(0);
+  transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 0.3s ease;
-
+  transition: transform 0.3s ease-in-out;
+  &.open {
+    transform: scaleY(1);
+  }
   .firstq {
     display: flex;
     flex-direction: row;
