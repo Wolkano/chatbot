@@ -227,7 +227,7 @@ const handleResponse = (op) => {
 .ChatContainer {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5px;
-
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
