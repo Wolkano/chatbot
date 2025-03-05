@@ -1,5 +1,5 @@
 <template>
-  <button @click="showMenu" v-if="!isMenuOpen">
+  <button class="menuBtn" @click="showMenu" :class="{ open: isMenuOpen }">
     {{ isMenuOpen ? "⬇️" : "⬆️" }}
   </button>
 
@@ -233,12 +233,21 @@ const handleResponse = (op) => {
 </script>
 
 <style lang="scss">
-.ChatContainer {
+.menuBtn {
   position: fixed;
+  bottom: 10px;
+
+  transition: bottom 0.3s ease-in-out;
+  z-index: 10;
+  &.open {
+    bottom: 410px; /* Flytta upp knappen över chatten */
+  }
+}
+.ChatContainer {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5px;
   width: 600px;
-  height: 600px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -246,12 +255,18 @@ const handleResponse = (op) => {
   color: #e5e7eb;
   padding: 20px 50px;
   box-shadow: 0px 1px 10px rgba($color: #000000, $alpha: 0.2);
-  transform: scaleY(0);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
   transform-origin: bottom;
   transition: transform 0.3s ease-in-out;
+  z-index: 9;
+
   &.open {
-    transform: scaleY(1);
+    transform: translateX(-50%) scaleY(1);
   }
+
   .firstq {
     display: flex;
     flex-direction: row;
