@@ -303,43 +303,6 @@ const handleResponse = (op) => {
     .slider {
       width: 100%;
     }
-    /*.slider {
-      -webkit-appearance: none; 
-      -moz-appearance: none; 
-      appearance: none; 
-      width: 100%; 
-      height: 10px; 
-      background: linear-gradient(
-        to right,
-        #06b6d4 0%,
-        #06b6d4 50%,
-        #ddd 50%,
-        #ddd 100%
-      ); 
-      border-radius: 5px; 
-      outline: none; 
-      transition: background 0.3s;
-      &:-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 20px; 
-        height: 20px; 
-        background: #1d4ed8; 
-        border-radius: 50%; 
-        cursor: pointer; 
-        transition: background 0.3s; 
-      }
-      
-      &:-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        background: #1d4ed8;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-      
-    }*/
 
     .radio {
       width: 10px;
