@@ -18,9 +18,8 @@
 
 <script setup>
 import Cookies from "js-cookie";
-import { ref } from "vue";
 
-let currentQ = ref(0);
+let currentQ = 0;
 
 const startForm = () => {
   document.querySelector(".firstq").style = "display: none";
