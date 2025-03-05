@@ -4,7 +4,7 @@
       <h1>Hej Bygg-Bengt här!</h1>
       <p>Vill du få en offert inom 5 minuter?</p>
       <button @click="startForm()" class="yes">Ja</button>
-      <button class="no">Nej</button>
+      <button class="no" @click="hideBot()">Nej</button>
     </div>
     <form>
       <div class="question">
@@ -18,7 +18,9 @@
 
 <script setup>
 import Cookies from "js-cookie";
-let currentQ = 0;
+import { ref } from "vue";
+
+let currentQ = ref(0);
 
 const startForm = () => {
   document.querySelector(".firstq").style = "display: none";
@@ -226,7 +228,7 @@ const handleResponse = (op) => {
 .ChatContainer {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5px;
-  width: 40vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -234,7 +236,7 @@ const handleResponse = (op) => {
   color: #e5e7eb;
   padding: 20px 50px;
   box-shadow: 0px 1px 10px rgba($color: #000000, $alpha: 0.2);
-  height: 55vh;
+
   .firstq {
     display: flex;
     flex-direction: row;
@@ -259,7 +261,6 @@ const handleResponse = (op) => {
     text-align: center;
     .qText {
       max-width: 80ch;
-      width: 50%;
     }
   }
   .answer {
