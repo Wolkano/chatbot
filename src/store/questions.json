@@ -1,0 +1,27 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "What type of service do you need?",
+      "type": "buttons",
+      "options": ["Web Design", "SEO", "Marketing"],
+      "next": 2
+    },
+    {
+      "id": 2,
+      "text": "How many pages do you need?",
+      "type": "slider",
+      "min": 1,
+      "max": 10,
+      "next": 3
+    },
+    {
+      "id": 3,
+      "text": "Do you need hosting?",
+      "type": "checkbox",
+      "options": ["Yes", "No"],
+      "multiple": false,
+      "next": 4
+    }
+  ]
+}

@@ -4,6 +4,14 @@
   </button>
 
   <div class="ChatContainer" :class="{ open: isMenuOpen }">
+    <div class="newSolution">
+      <p>{{ currentQuestion.text }}</p>
+      <component
+        :is="getComponent(currentQuestion.type)"
+        :question="currentQuestion"
+        @answer="handleAnswer"
+      />
+    </div>
     <div class="firstq">
       <h1>Hej Bygg-Bengt här!</h1>
       <p>Vill du få en offert inom 5 minuter?</p>
@@ -22,7 +30,38 @@
 
 <script setup>
 import Cookies from "js-cookie";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+import ButtonsComponent from "./inputs/ButtonsComponent.vue";
+import SliderComponent from "./inputs/SliderComponent.vue";
+import CheckboxComponent from "./inputs/CheckboxComponent.vue";
+
+const store = useStore();
+const currentQuestionIndex = computed(() => store.state.currentQuestionIndex);
+const currentQuestion = computed(
+  () => store.state.questions[currentQuestionIndex.value]
+);
+
+const getComponent = (type) => {
+  return (
+    {
+      buttons: ButtonsComponent,
+      slider: SliderComponent,
+      checkbox: CheckboxComponent,
+    }[type] || "div"
+  );
+};
+
+const handleAnswer = (answer) => {
+  store.commit("saveResponse", { id: currentQuestion.value.id, answer });
+  if (currentQuestion.value.next) {
+    currentQuestionIndex.value++;
+    store.commit("nextQuestion");
+  } else {
+    alert("Offer Calculated!");
+  }
+};
+
 let currentQ = 0;
 
 const isMenuOpen = ref(false);
